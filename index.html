@@ -18,9 +18,10 @@
       --gray: #888;
       --light-gray: #ccc;
       --border: #2e2e2e;
+      --nav-h: 64px;
     }
- 
-    html { scroll-behavior: smooth; }
+  
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
  
     body {
       font-family: 'Barlow', sans-serif;
@@ -36,7 +37,8 @@
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px;
-      height: 64px;
+      height: var(--nav-h);
+      gap: 12px;
     }
     .nav-logo {
       font-family: 'Barlow Condensed', sans-serif;
@@ -308,13 +310,10 @@
     }
     .contact-label { font-size: 0.78rem; color: var(--gray); margin-bottom: 2px; }
     .contact-val { font-size: 0.95rem; font-weight: 500; }
-    .map-placeholder {
-      margin-top: 24px; border-radius: 8px; overflow: hidden;
-      border: 1px solid var(--border); height: 180px;
-      background: var(--card);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gray); font-size: 0.9rem;
+    .map-embed {
+      margin-top: 20px; border-radius: 8px; overflow: hidden;
     }
+    .map-embed iframe { display: block; }
  
     .contact-form h3 {
       font-family: 'Barlow Condensed', sans-serif;
@@ -358,22 +357,75 @@
     .footer-copy { font-size: 0.8rem; color: var(--gray); }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      #hero::before { width: 40%; }
+    }
+
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 16px; }
       .nav-links { display: none; }
-      .hero-stats { flex-direction: column; gap: 20px; }
+      .nav-logo { font-size: 1.3rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; white-space: nowrap; }
+      .hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .stat-num { font-size: 1.8rem; }
+      #hero::before { width: 35%; opacity: 0.1; }
+      .section-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+      .section-sub { font-size: 0.9rem; margin-bottom: 32px; }
       .contact-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item.tall { grid-row: span 1; }
       .form-row { flex-direction: column; }
-      section { padding: 60px 20px; }
+      section { padding: 50px 20px; }
       #hero { padding: 80px 20px 40px; }
+      .plan-card { padding: 24px 20px; }
+      .plan-price { font-size: 2.4rem; }
+      .plans-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+      .testi-card { padding: 20px; }
     }
 
     @media (max-width: 480px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-outline { text-align: center; }
+      nav { padding: 0 12px; }
+      .nav-logo { font-size: 1.1rem; }
+      .nav-cta { padding: 6px 12px; font-size: 0.7rem; }
+      .hero-title { font-size: clamp(1.8rem, 10vw, 2.5rem); }
+      .hero-sub { font-size: 0.85rem; margin-bottom: 24px; }
+      .hero-tag { font-size: 0.65rem; padding: 4px 10px; }
+      .hero-stats { gap: 12px; margin-top: 36px; padding-top: 20px; }
+      .stat-num { font-size: 1.5rem; }
+      .stat-label { font-size: 0.75rem; }
+      .btn-primary, .btn-outline { padding: 12px 20px; font-size: 0.85rem; text-align: center; width: 100%; }
+      .hero-actions { flex-direction: column; gap: 10px; }
+      section { padding: 40px 16px; }
+      #hero { padding: 72px 16px 32px; min-height: 90vh; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 8px; }
+      .section-title { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+      .section-sub { font-size: 0.82rem; margin-bottom: 24px; }
+      .plans-grid { grid-template-columns: 1fr; gap: 14px; }
+      .plan-card { padding: 20px 16px; }
+      .plan-price { font-size: 2rem; }
+      .trainers-grid { gap: 16px; grid-template-columns: 1fr; }
+      .schedule-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .class-thumb { height: 100px; font-size: 1.8rem; }
+      .class-info { padding: 10px; }
+      .class-name { font-size: 0.9rem; }
+      .class-time, .class-trainer { font-size: 0.7rem; }
+      .contact-grid { gap: 28px; }
+      .contact-info h3, .contact-form h3 { font-size: 1.2rem; }
+      .map-embed { height: 200px; }
+      .footer-logo { font-size: 1.4rem; }
+      .footer-links { gap: 14px; }
+      .footer-links a { font-size: 0.75rem; }
+      .footer-copy { font-size: 0.7rem; }
+      .hamburger { padding: 2px; }
+      .hamburger span { width: 20px; height: 1.5px; }
+    }
+
+    @media (max-width: 360px) {
+      .schedule-grid { grid-template-columns: 1fr; }
+      .nav-logo { font-size: 1rem; }
+      .hero-title { font-size: 1.5rem; }
     }
 
     /* MOBILE HAMBURGER */
@@ -390,11 +442,12 @@
       .hamburger { display: flex; }
       .nav-links.open {
         display: flex; flex-direction: column;
-        position: absolute; top: 64px; left: 0; right: 0;
+        position: absolute; top: var(--nav-h); left: 0; right: 0;
         background: rgba(13,13,13,0.98);
         border-bottom: 1px solid var(--border);
-        padding: 20px 40px; gap: 16px;
+        padding: 20px 24px; gap: 14px;
       }
+      .nav-links.open a { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -429,15 +482,15 @@
       </div>
       <div class="hero-stats">
         <div>
-          <div class="stat-num">1200+</div>
+          <div class="stat-num">1000+</div>
           <div class="stat-label">Active Members</div>
         </div>
         <div>
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Expert Trainers</div>
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Google Rating</div>
         </div>
         <div>
-          <div class="stat-num">8yr</div>
+          <div class="stat-num">10yr</div>
           <div class="stat-label">In Business</div>
         </div>
       </div>
@@ -632,38 +685,38 @@
     <div class="container">
       <div class="section-tag">Testimonials</div>
       <h2 class="section-title">What Our Members Say</h2>
-      <p class="section-sub">Real results from real people. See why 1200+ members trust Muscle Master.</p>
+      <p class="section-sub">Real results from real people. Rated <strong style="color:var(--orange)">4.9★</strong> on Google Maps — see what 90+ members say.</p>
       <div class="testi-grid">
         <div class="testi-card">
           <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Lost 18 kg in 5 months with Coach Rahul's program. The trainers here actually care about your progress."</p>
+          <p class="testi-text">"I've had an excellent experience at this gym. The facilities are clean, well-maintained, and equipped with everything needed for effective workouts. What truly makes this gym special is the dedication and support of the trainers."</p>
           <div class="testi-author">
-            <div class="testi-avatar">AK</div>
+            <div class="testi-avatar">UM</div>
             <div>
-              <div class="testi-name">Aman Kumar</div>
-              <div class="testi-since">Member since 2022</div>
+              <div class="testi-name">Upasna Mishra</div>
+              <div class="testi-since">Google Review · June 2026</div>
             </div>
           </div>
         </div>
         <div class="testi-card">
           <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"The HIIT classes are intense but so effective! Priya ma'am keeps you motivated the entire time."</p>
+          <p class="testi-text">"The trainers at this gym are experienced and give individual attention to everyone. The ambience is peaceful. All the equipment are in very good condition. The hygiene of the gym is always well maintained."</p>
           <div class="testi-author">
-            <div class="testi-avatar">SR</div>
+            <div class="testi-avatar">AC</div>
             <div>
-              <div class="testi-name">Sneha Rai</div>
-              <div class="testi-since">Member since 2023</div>
+              <div class="testi-name">Aditya Chaturvedi</div>
+              <div class="testi-since">Google Review · May 2026</div>
             </div>
           </div>
         </div>
         <div class="testi-card">
           <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Best gym in Lucknow, hands down. Equipment is always clean and in great condition. Very professional."</p>
+          <p class="testi-text">"I have been coming to this gym for a few weeks now, and I am genuinely happy. Great environment and the trainers are very supportive. Highly recommend for anyone looking to start their fitness journey."</p>
           <div class="testi-author">
-            <div class="testi-avatar">VT</div>
+            <div class="testi-avatar">RT</div>
             <div>
-              <div class="testi-name">Vikram Tripathi</div>
-              <div class="testi-since">Member since 2021</div>
+              <div class="testi-name">Ruchika Tewari</div>
+              <div class="testi-since">Google Review · June 2026</div>
             </div>
           </div>
         </div>
@@ -684,21 +737,21 @@
             <div class="contact-icon">📍</div>
             <div>
               <div class="contact-label">Address</div>
-              <div class="contact-val">12, Vikas Nagar, Lucknow, UP 226022</div>
+              <div class="contact-val">BRD Complex, Bangla Bazar Rd, near SBI Bank, beside Police chowki, Sector J, Ashiyana, Lucknow, UP 226012</div>
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-icon">📞</div>
             <div>
               <div class="contact-label">Phone</div>
-              <div class="contact-val">+91 98765 43210</div>
+              <div class="contact-val">+91 99560 80002</div>
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-icon">✉️</div>
             <div>
               <div class="contact-label">Email</div>
-              <div class="contact-val">hello@musclemaster.in</div>
+              <div class="contact-val">muscularmaster@gmail.com</div>
             </div>
           </div>
           <div class="contact-item">
@@ -708,7 +761,9 @@
               <div class="contact-val">Mon–Sat: 5:00 AM – 10:00 PM<br>Sunday: 6:00 AM – 8:00 PM</div>
             </div>
           </div>
-          <div class="map-placeholder">📍 Google Map Embed Goes Here</div>
+          <div class="map-embed">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.7439!2d80.9233543!3d26.7971391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfbbe60b8ba5d%3A0x2edaf39c80bd6d76!2sMuscle%20Master%20Unisex%20Gym%20by%20Rajiv%20Khanna!5e0!3m2!1sen!2sin!4v1" width="100%" height="220" style="border:0;border-radius:8px;margin-top:20px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
  
         <div class="contact-form">
@@ -726,7 +781,7 @@
           <div class="form-row">
             <div class="form-group">
               <label>Phone</label>
-              <input type="tel" placeholder="+91 98765 43210" />
+              <input type="tel" placeholder="+91 99560 80002" />
             </div>
             <div class="form-group">
               <label>Email</label>
@@ -763,7 +818,7 @@
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </div>
-    <p class="footer-copy">© 2025 Muscle Master. All rights reserved. · Lucknow, India</p>
+    <p class="footer-copy">© 2026 Muscle Master. All rights reserved. · Lucknow, India</p>
   </footer>
 
   <script>
@@ -782,13 +837,13 @@
     });
 
     // Smooth scroll offset for fixed nav
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           e.preventDefault();
-          const offset = 64;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          const top = target.getBoundingClientRect().top + window.scrollY - navH;
           window.scrollTo({ top, behavior: 'smooth' });
         }
       });
